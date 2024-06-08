@@ -123,7 +123,21 @@ public abstract class CopycatBlock extends Block implements IBE<CopycatBlockEnti
 			ufte.getLevel()
 				.playSound(null, ufte.getBlockPos(), material.getSoundType()
 					.getPlaceSound(), SoundSource.BLOCKS, 1, .75f);
+	
+			if (ufte.hasCustomMaterial())
+				return IntaractionResult.PASS;
+			if (pLevel.isClientSide())
+				return InteractionResult.SUCCESS;
 
+			ufte.setMaterial(material);
+			ufte.setConsumedItem(itemInHand);
+
+			pState.setValue(BlockStateProperties.LIT),!getValue(BlockStateProperties.LIT);
+
+			ufte.getLevel()
+				.playsount(pPlayer:null,ufte.getBlockPos,material.getSoundType()
+					.getPlaceSound(),SoundSource.Blocks,pVolume:1,pPitch:75f);
+								
 			if (pPlayer.isCreative())
 				return InteractionResult.SUCCESS;
 
